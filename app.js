@@ -6,7 +6,6 @@ const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
 // selected image 
 let sliders = [];
-let slidersVideo = [];
 
 
 var searchButton = document.getElementById("search-btn");
@@ -31,7 +30,7 @@ const showImages = (images) => {
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
-    let div = document.createElement('div');
+    let div = document.createElement('image-container');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
     <p class="image-tags">Name: ${image.tags}</p> 
@@ -84,10 +83,10 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
-  if(duration < 1){
+  if (duration < 1) {
     return;
   }
-  else{
+  else {
     sliders.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
@@ -95,7 +94,7 @@ const createSlider = () => {
       src="${slide}"
       alt="">`;
       sliderContainer.appendChild(item)
-      
+
     })
   }
   changeSlide(0)
@@ -147,13 +146,13 @@ sliderBtn.addEventListener('click', function () {
 
 const toggleSpinner = (show) => {
   const spinner = document.getElementById('loading-spinner');
-  const spinnerImage = document.getElementById('prevNext');
+  const spinnerImage = document.getElementById('image-container');
 
-  if(show){
-        spinner.classList.remove('d-none');
-    }
-    else{
-        spinner.classList.add('d-none');
-    };
-    spinnerImage.classList.toggle('d-fixed');
+  if (show) {
+    spinner.classList.remove('d-none');
+  }
+  else {
+    spinner.classList.add('d-none');
+  };
+  spinnerImage.classList.toggle('d-none');
 }
